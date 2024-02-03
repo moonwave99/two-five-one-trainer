@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import {
     getByInterval,
     getTwoFiveOne,
-    getChordQualities,
-    sharps,
-    flats,
+    circeOfFifths,
     getEnharmonic,
     INTERVALS,
+    MODES,
     shortcuts,
 } from "./lib";
-import { nanoid } from "nanoid";
+
+import BackingTracks from "./BackingTracks";
+import Card from "./Card";
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -55,88 +57,91 @@ function App() {
         <>
             <header>
                 <h1>2-5-1 Trainer</h1>
+                <div className="controls">
+                    <ul className="favorites">
+                        {shortcuts.map(({ label, settings }, index) => (
+                            <li key={index}>
+                                <button onClick={() => setSettings(settings)}>
+                                    {label}
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                    <form onSubmit={onSubmit}>
+                        <label>
+                            root only
+                            <input
+                                name="rootsOnly"
+                                onChange={onSettingsChange}
+                                type="checkbox"
+                                checked={settings.rootsOnly}
+                            />
+                        </label>
+                        {MODES.map((mode) => (
+                            <label key={mode}>
+                                {mode}
+                                <input
+                                    name="mode"
+                                    value={mode}
+                                    onChange={onSettingsChange}
+                                    type="radio"
+                                    checked={settings.mode === mode}
+                                />
+                            </label>
+                        ))}
+                        <label>
+                            start from
+                            <select
+                                name="start"
+                                value={settings.start}
+                                onChange={onSettingsChange}
+                            >
+                                {circeOfFifths.map((note) => (
+                                    <option key={note}>{note}</option>
+                                ))}
+                            </select>
+                        </label>
+                        <label>
+                            interval:
+                            <select
+                                name="interval"
+                                value={settings.interval}
+                                onChange={onSettingsChange}
+                            >
+                                {INTERVALS.map(({ name }) => (
+                                    <option key={name}>{name}</option>
+                                ))}
+                            </select>
+                        </label>
+                        <label>
+                            max 1 row
+                            <input
+                                name="maxOneRow"
+                                onChange={onSettingsChange}
+                                type="checkbox"
+                                checked={settings.maxOneRow}
+                            />
+                        </label>
+                        <label>
+                            reverse
+                            <input
+                                name="reverse"
+                                onChange={onSettingsChange}
+                                type="checkbox"
+                                checked={settings.reverse}
+                            />
+                        </label>
+                    </form>
+                </div>
             </header>
 
             <main>
-                <ul className="favorites">
-                    {shortcuts.map(({ label, settings }, index) => (
-                        <li key={index}>
-                            <button onClick={() => setSettings(settings)}>
-                                {label}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-                <form onSubmit={onSubmit}>
-                    <label>
-                        root only
-                        <input
-                            name="rootsOnly"
-                            onChange={onSettingsChange}
-                            type="checkbox"
-                            checked={settings.rootsOnly}
-                        />
-                    </label>
-                    {["major", "minor", "none"].map((mode) => (
-                        <label key={mode}>
-                            {mode}
-                            <input
-                                name="mode"
-                                value={mode}
-                                onChange={onSettingsChange}
-                                type="radio"
-                                checked={settings.mode === mode}
-                            />
-                        </label>
-                    ))}
-                    <label>
-                        start from
-                        <select
-                            name="start"
-                            value={settings.start}
-                            onChange={onSettingsChange}
-                        >
-                            {[...sharps, ...flats].map((note) => (
-                                <option key={note}>{note}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        interval:
-                        <select
-                            name="interval"
-                            value={settings.interval}
-                            onChange={onSettingsChange}
-                        >
-                            {INTERVALS.map(({ name }) => (
-                                <option key={name}>{name}</option>
-                            ))}
-                        </select>
-                    </label>
-                    <label>
-                        max 1 row
-                        <input
-                            name="maxOneRow"
-                            onChange={onSettingsChange}
-                            type="checkbox"
-                            checked={settings.maxOneRow}
-                        />
-                    </label>
-                    <label>
-                        reverse
-                        <input
-                            name="reverse"
-                            onChange={onSettingsChange}
-                            type="checkbox"
-                            checked={settings.reverse}
-                        />
-                    </label>
-                </form>
                 <div className="cards">
                     {cardsToRender.map((card) => (
                         <Card key={card.id} {...card} settings={settings} />
                     ))}
                 </div>
+                <BackingTracks />
             </main>
             <footer>
                 &copy; {new Date().getFullYear()}{" "}
@@ -150,23 +155,6 @@ function App() {
                 .
             </footer>
         </>
-    );
-}
-
-function Card({ notes = [], settings }) {
-    const [two, five, one] = settings.rootsOnly
-        ? notes
-        : getChordQualities(notes, settings.mode);
-    return (
-        <article className="card">
-            {!settings.rootsOnly ? (
-                <>
-                    <span className="note">{two}</span>
-                    <span className="note">{five}</span>
-                </>
-            ) : null}
-            <span className="root">{one}</span>
-        </article>
     );
 }
 

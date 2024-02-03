@@ -34,6 +34,19 @@ body,
   }
 }
 
+header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 main {
   flex: 1;
   display: flex;
@@ -97,5 +110,36 @@ footer {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
 
+.backing-tracks {
+  display: grid;
+  grid-template-areas:
+    "a b"
+    "c b";
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+}
+
+.backing-tracks h2 {
+  grid-area: a;
+  margin: 0;
+  align-self: center;
+  justify-self: end;
+}
+
+.backing-tracks ul {
+  grid-area: c;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-self: end;
+}
+
+.backing-tracks .player {
+  grid-area: b;
 }

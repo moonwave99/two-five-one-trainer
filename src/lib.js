@@ -4,6 +4,15 @@ export function getTwoFiveOne(root = "C") {
     return [Note.transpose(root, "M2"), Note.transpose(root, "P5"), root];
 }
 
+function needsEnharmonic(note) {
+    return (
+        note.includes("##") ||
+        note.includes("bb") ||
+        note == "Fb" ||
+        note === "Cb"
+    );
+}
+
 export function getByInterval({
     start = "C",
     interval = "P5",
@@ -16,7 +25,7 @@ export function getByInterval({
             output.at(-1),
             reverse ? Interval.invert(interval) : interval
         );
-        if (note.includes("##") || note.includes("bb")) {
+        if (needsEnharmonic(note)) {
             note = Note.enharmonic(note);
         }
         output.push(note);
@@ -39,16 +48,17 @@ export function getChordQualities(
     mode = "major"
 ) {
     if (mode === "major") {
-        return [`${two}m7`, `${five}7`, `${one}`];
+        return [`${two}m`, `${five}7`, `${one}`];
     }
     if (mode === "minor") {
-        return [`${two}ø`, `${five}7`, `${one}m7`];
+        return [`${two}ø`, `${five}7`, `${one}m`];
     }
     return [two, five, one];
 }
 
 export const sharps = getByInterval({ amount: 6 });
 export const flats = getByInterval({ start: "Gb", amount: 6 });
+export const circeOfFifths = [...sharps, ...flats];
 
 export const INTERVALS = [
     { name: "P5", cycle: 12 },
@@ -57,6 +67,8 @@ export const INTERVALS = [
     { name: "M3", cycle: 3 },
     { name: "m3", cycle: 4 },
 ];
+
+export const MODES = ["major", "minor", "none"];
 
 export const shortcuts = [
     {
@@ -124,5 +136,20 @@ export const shortcuts = [
             start: "B",
             interval: "M2",
         },
+    },
+];
+
+export const backingTracks = [
+    {
+        href: "https://www.youtube.com/watch?v=-nYXo4TPWwk",
+        label: "Jazz Four 80",
+    },
+    {
+        href: "https://www.youtube.com/watch?v=rwyAP9A7WBE",
+        label: "Jazz Four 100",
+    },
+    {
+        href: "https://www.youtube.com/watch?v=E0Kxw0H_yCE",
+        label: "Jazz Four 120",
     },
 ];

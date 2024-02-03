@@ -13,6 +13,7 @@
     "nanoid": "^5.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-player": "^2.14.1",
     "tonal": "^5.2.0"
   },
   "devDependencies": {
