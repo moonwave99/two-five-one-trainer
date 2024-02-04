@@ -1,27 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { nanoid } from "nanoid";
 import {
     getByInterval,
     getTwoFiveOne,
-    circeOfFifths,
     getEnharmonic,
     INTERVALS,
-    MODES,
     shortcuts,
 } from "./lib";
 
+import { SettingsContext } from "./SettingsProvider";
+import Form from "./Form";
 import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 
-function getSteps(steps, step, checked) {
-    return checked
-        ? [...new Set([...steps, step])]
-        : steps.filter((x) => x !== step);
-}
-
 function App() {
     const [cards, setCards] = useState([]);
-    const [settings, setSettings] = useState(shortcuts[0].settings);
+    const [showSettings, setShowSettings] = useState(false);
+    const { settings, setSettings } = useContext(SettingsContext);
 
     useEffect(() => {
         const { cycle: amount } = INTERVALS.find(
@@ -35,137 +30,41 @@ function App() {
         );
     }, [settings]);
 
-    function onSubmit(event) {
-        event.preventDefault();
-    }
-
-    function onSettingsChange(event) {
-        if (event.target.name === "include-step") {
-            setSettings((prev) => ({
-                ...prev,
-                include: getSteps(
-                    prev.include,
-                    +event.target.dataset.step,
-                    !!event.target.checked
-                ),
-            }));
-            return;
-        }
-        if (event.target.name === "mode") {
-            setSettings((prev) => ({ ...prev, mode: event.target.value }));
-            return;
-        }
-        if (event.target.type === "checkbox") {
-            setSettings((prev) => ({
-                ...prev,
-                [event.target.name]: !prev[event.target.name],
-            }));
-            return;
-        }
-        setSettings((prev) => ({
-            ...prev,
-            [event.target.name]: event.target.value,
-        }));
-    }
-
-    const cardsToRender = cards.slice(0, settings.maxOneRow ? 6 : 12);
-
     return (
         <>
             <header>
-                <h1>2-5-1 Trainer</h1>
+                <h1>Dr. Drill</h1>
                 <div className="controls">
                     <ul className="favorites">
                         {shortcuts.map(({ label, settings }, index) => (
                             <li key={index}>
-                                <button onClick={() => setSettings(settings)}>
+                                <button
+                                    onClick={() =>
+                                        setSettings((prev) => ({
+                                            ...prev,
+                                            ...settings,
+                                        }))
+                                    }
+                                >
                                     {label}
                                 </button>
                             </li>
                         ))}
+                        <li>
+                            <button
+                                onClick={() => setShowSettings((prev) => !prev)}
+                            >
+                                Toggle Settings
+                            </button>
+                        </li>
                     </ul>
-                    <form onSubmit={onSubmit}>
-                        <label>
-                            include two
-                            <input
-                                name="include-step"
-                                data-step="2"
-                                onChange={onSettingsChange}
-                                type="checkbox"
-                                checked={settings.include.includes(2)}
-                            />
-                        </label>
-                        <label>
-                            include five
-                            <input
-                                name="include-step"
-                                data-step="5"
-                                onChange={onSettingsChange}
-                                type="checkbox"
-                                checked={settings.include.includes(5)}
-                            />
-                        </label>
-                        {MODES.map((mode) => (
-                            <label key={mode}>
-                                {mode}
-                                <input
-                                    name="mode"
-                                    value={mode}
-                                    onChange={onSettingsChange}
-                                    type="radio"
-                                    checked={settings.mode === mode}
-                                />
-                            </label>
-                        ))}
-                        <label>
-                            start from
-                            <select
-                                name="start"
-                                value={settings.start}
-                                onChange={onSettingsChange}
-                            >
-                                {circeOfFifths.map((note) => (
-                                    <option key={note}>{note}</option>
-                                ))}
-                            </select>
-                        </label>
-                        <label>
-                            interval:
-                            <select
-                                name="interval"
-                                value={settings.interval}
-                                onChange={onSettingsChange}
-                            >
-                                {INTERVALS.map(({ name }) => (
-                                    <option key={name}>{name}</option>
-                                ))}
-                            </select>
-                        </label>
-                        <label>
-                            max 1 row
-                            <input
-                                name="maxOneRow"
-                                onChange={onSettingsChange}
-                                type="checkbox"
-                                checked={settings.maxOneRow}
-                            />
-                        </label>
-                        <label>
-                            reverse
-                            <input
-                                name="reverse"
-                                onChange={onSettingsChange}
-                                type="checkbox"
-                                checked={settings.reverse}
-                            />
-                        </label>
-                    </form>
+                    {showSettings && <Form />}
                 </div>
             </header>
 
             <main>
                 <div className="cards">
-                    {cardsToRender.map((card) => (
+                    {cards.slice(0, settings.max).map((card) => (
                         <Card key={card.id} {...card} settings={settings} />
                     ))}
                 </div>

@@ -1,4 +1,4 @@
-# 2-5-1 Trainer
+# Dr. Drill
 
 Displays sequences for practice drills.
 

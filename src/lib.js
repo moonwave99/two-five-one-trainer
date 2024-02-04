@@ -75,7 +75,6 @@ export const shortcuts = [
         label: "Fifths Ascending",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: false,
             mode: "major",
             start: "C",
@@ -86,7 +85,6 @@ export const shortcuts = [
         label: "Fifths Descending",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: true,
             mode: "major",
             start: "C",
@@ -97,7 +95,6 @@ export const shortcuts = [
         label: "Step Descending",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: true,
             mode: "major",
             start: "C",
@@ -108,7 +105,6 @@ export const shortcuts = [
         label: "Step Descending (-1)",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: true,
             mode: "major",
             start: "B",
@@ -119,7 +115,6 @@ export const shortcuts = [
         label: "Step Ascending",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: false,
             mode: "major",
             start: "C",
@@ -130,7 +125,6 @@ export const shortcuts = [
         label: "Step Ascending (-1)",
         settings: {
             include: [2, 5],
-            maxOneRow: false,
             reverse: false,
             mode: "major",
             start: "B",
@@ -141,7 +135,6 @@ export const shortcuts = [
         label: "Major Cadences",
         settings: {
             include: [5],
-            maxOneRow: false,
             reverse: false,
             mode: "major",
             start: "C",
@@ -152,7 +145,6 @@ export const shortcuts = [
         label: "Minor Cadences",
         settings: {
             include: [5],
-            maxOneRow: false,
             reverse: false,
             mode: "minor",
             start: "A",
