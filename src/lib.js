@@ -74,7 +74,7 @@ export const shortcuts = [
     {
         label: "Fifths Ascending",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: false,
             mode: "major",
@@ -85,7 +85,7 @@ export const shortcuts = [
     {
         label: "Fifths Descending",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: true,
             mode: "major",
@@ -96,7 +96,7 @@ export const shortcuts = [
     {
         label: "Step Descending",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: true,
             mode: "major",
@@ -107,7 +107,7 @@ export const shortcuts = [
     {
         label: "Step Descending (-1)",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: true,
             mode: "major",
@@ -118,7 +118,7 @@ export const shortcuts = [
     {
         label: "Step Ascending",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: false,
             mode: "major",
@@ -129,12 +129,34 @@ export const shortcuts = [
     {
         label: "Step Ascending (-1)",
         settings: {
-            rootsOnly: false,
+            include: [2, 5],
             maxOneRow: false,
             reverse: false,
             mode: "major",
             start: "B",
             interval: "M2",
+        },
+    },
+    {
+        label: "Major Cadences",
+        settings: {
+            include: [5],
+            maxOneRow: false,
+            reverse: false,
+            mode: "major",
+            start: "C",
+            interval: "P5",
+        },
+    },
+    {
+        label: "Minor Cadences",
+        settings: {
+            include: [5],
+            maxOneRow: false,
+            reverse: false,
+            mode: "minor",
+            start: "A",
+            interval: "P5",
         },
     },
 ];

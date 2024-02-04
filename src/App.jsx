@@ -13,6 +13,12 @@ import {
 import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 
+function getSteps(steps, step, checked) {
+    return checked
+        ? [...new Set([...steps, step])]
+        : steps.filter((x) => x !== step);
+}
+
 function App() {
     const [cards, setCards] = useState([]);
     const [settings, setSettings] = useState(shortcuts[0].settings);
@@ -34,6 +40,17 @@ function App() {
     }
 
     function onSettingsChange(event) {
+        if (event.target.name === "include-step") {
+            setSettings((prev) => ({
+                ...prev,
+                include: getSteps(
+                    prev.include,
+                    +event.target.dataset.step,
+                    !!event.target.checked
+                ),
+            }));
+            return;
+        }
         if (event.target.name === "mode") {
             setSettings((prev) => ({ ...prev, mode: event.target.value }));
             return;
@@ -69,12 +86,23 @@ function App() {
                     </ul>
                     <form onSubmit={onSubmit}>
                         <label>
-                            root only
+                            include two
                             <input
-                                name="rootsOnly"
+                                name="include-step"
+                                data-step="2"
                                 onChange={onSettingsChange}
                                 type="checkbox"
-                                checked={settings.rootsOnly}
+                                checked={settings.include.includes(2)}
+                            />
+                        </label>
+                        <label>
+                            include five
+                            <input
+                                name="include-step"
+                                data-step="5"
+                                onChange={onSettingsChange}
+                                type="checkbox"
+                                checked={settings.include.includes(5)}
                             />
                         </label>
                         {MODES.map((mode) => (
