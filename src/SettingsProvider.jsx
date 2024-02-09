@@ -1,13 +1,14 @@
 import { useState, createContext } from "react";
 
-import { shortcuts } from "./lib";
+import { shortcuts, getSearchParams } from "./lib";
 
 export const SettingsContext = createContext(null);
 
 export default function SettingsProvider({ children }) {
+    const params = getSearchParams();
     const [settings, setSettings] = useState({
         max: 12,
-        ...shortcuts[0].settings,
+        ...(params || shortcuts[0].settings),
     });
     return (
         <SettingsContext.Provider value={{ settings, setSettings }}>

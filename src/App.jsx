@@ -6,6 +6,7 @@ import {
     getEnharmonic,
     INTERVALS,
     shortcuts,
+    setSearchParams,
 } from "./lib";
 
 import { SettingsContext } from "./SettingsProvider";
@@ -28,6 +29,7 @@ function App() {
                 id: nanoid(),
             }))
         );
+        setSearchParams(settings);
     }, [settings]);
 
     return (

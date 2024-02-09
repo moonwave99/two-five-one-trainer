@@ -167,3 +167,27 @@ export const backingTracks = [
         label: "Jazz Four 120",
     },
 ];
+
+export function getSearchParams() {
+    return Object.fromEntries(
+        Array.from(new URLSearchParams(window.location.search)).map(
+            ([key, value]) => {
+                if (key === "include") {
+                    return ["include", value.split(",").map((n) => Number(n))];
+                }
+                if (key === "reverse") {
+                    return ["reverse", JSON.parse(value)];
+                }
+                if (key === "max") {
+                    return ["max", Number(value)];
+                }
+                return [key, value];
+            }
+        )
+    );
+}
+
+export function setSearchParams(data) {
+    const params = new URLSearchParams(data);
+    window.history.replaceState(null, null, `/?${params}`);
+}
