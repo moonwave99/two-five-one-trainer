@@ -169,7 +169,7 @@ export const backingTracks = [
 ];
 
 export function getSearchParams() {
-    return Object.fromEntries(
+    const params = Object.fromEntries(
         Array.from(new URLSearchParams(window.location.search)).map(
             ([key, value]) => {
                 if (key === "include") {
@@ -185,6 +185,7 @@ export function getSearchParams() {
             }
         )
     );
+    return Object.keys(params).length ? params : null;
 }
 
 export function setSearchParams(data) {
