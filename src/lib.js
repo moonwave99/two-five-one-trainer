@@ -152,6 +152,14 @@ export const shortcuts = [
 
 export const backingTracks = [
   {
+    href: "https://www.youtube.com/watch?v=v3RvZnw79tw",
+    label: "Jazz Four 60",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=D_6P_xSg61I",
+    label: "Jazz Four 70",
+  },
+  {
     href: "https://www.youtube.com/watch?v=-nYXo4TPWwk",
     label: "Jazz Four 80",
   },
