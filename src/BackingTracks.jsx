@@ -7,18 +7,14 @@ export default function BackingTracks() {
     return (
         <section className="backing-tracks">
             <h2>Backing Tracks</h2>
-            <ul>
-                {backingTracks.map(({ label, href }) => (
-                    <li key={href}>
-                        <button
-                            onClick={() => setVideo(href)}
-                            disabled={href === video}
-                        >
-                            {label}
-                        </button>
-                    </li>
-                ))}
-            </ul>
+            <label>
+                Choose Track:
+                <select onChange={(event) => setVideo(backingTracks[Number(event.target.value)]?.href)}>
+                    {backingTracks.map(({ label, href }, index) => (
+                        <option key={href} value={index}>{label}</option>
+                    ))}
+                </select>
+            </label>
             <ReactPlayer
                 url={video}
                 className="player"
