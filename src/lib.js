@@ -164,8 +164,16 @@ export const backingTracks = [
     label: "Jazz Four 80",
   },
   {
+    href: "https://www.youtube.com/watch?v=tmEE8ujWbn8",
+    label: "Jazz Four 90",
+  },
+  {
     href: "https://www.youtube.com/watch?v=rwyAP9A7WBE",
     label: "Jazz Four 100",
+  },
+  {
+    href: "https://www.youtube.com/watch?v=2scW0-uD9W8",
+    label: "Jazz Four 110",
   },
   {
     href: "https://www.youtube.com/watch?v=E0Kxw0H_yCE",
