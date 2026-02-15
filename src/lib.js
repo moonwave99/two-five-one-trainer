@@ -20,7 +20,7 @@ export function getByInterval({
   while (--amount) {
     let note = Note.transpose(
       output.at(-1),
-      reverse ? Interval.invert(interval) : interval
+      reverse ? Interval.invert(interval) : interval,
     );
     if (needsEnharmonic(note)) {
       note = Note.enharmonic(note);
@@ -42,7 +42,7 @@ export function getEnharmonic(note, mode) {
 
 export function getChordQualities(
   [two, five, one] = ["D", "G", "C"],
-  mode = "major"
+  mode = "major",
 ) {
   if (mode === "major") {
     return [`${two}m`, `${five}7`, `${one}`];
@@ -150,36 +150,60 @@ export const shortcuts = [
   },
 ];
 
-export const backingTracks = [
-  {
-    href: "https://www.youtube.com/watch?v=v3RvZnw79tw",
-    label: "Jazz Four 60",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=D_6P_xSg61I",
-    label: "Jazz Four 70",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=-nYXo4TPWwk",
-    label: "Jazz Four 80",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=tmEE8ujWbn8",
-    label: "Jazz Four 90",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=rwyAP9A7WBE",
-    label: "Jazz Four 100",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=2scW0-uD9W8",
-    label: "Jazz Four 110",
-  },
-  {
-    href: "https://www.youtube.com/watch?v=E0Kxw0H_yCE",
-    label: "Jazz Four 120",
-  },
-];
+export const backingTracks = {
+  "Jazz Four": [
+    {
+      href: "https://www.youtube.com/watch?v=v3RvZnw79tw",
+      label: "Jazz Four 60",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=D_6P_xSg61I",
+      label: "Jazz Four 70",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=-nYXo4TPWwk",
+      label: "Jazz Four 80",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=tmEE8ujWbn8",
+      label: "Jazz Four 90",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=rwyAP9A7WBE",
+      label: "Jazz Four 100",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=2scW0-uD9W8",
+      label: "Jazz Four 110",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=E0Kxw0H_yCE",
+      label: "Jazz Four 120",
+    },
+  ],
+  "Bossa Brushes": [
+    {
+      href: "https://www.youtube.com/watch?v=WfpE4KMuXI",
+      label: "Bossa Brushes 50",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=3mpNamxw85M",
+      label: "Bossa Brushes 60",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=gSBSt6ibLf4",
+      label: "Bossa Brushes 70",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=yTejyOE-6-w",
+      label: "Bossa Brushes 80",
+    },
+    {
+      href: "https://www.youtube.com/watch?v=GQYmiIDy78o",
+      label: "Bossa Brushes 90",
+    },
+  ],
+};
 
 export function getSearchParams() {
   const params = Object.fromEntries(
@@ -195,8 +219,8 @@ export function getSearchParams() {
           return ["max", Number(value)];
         }
         return [key, value];
-      }
-    )
+      },
+    ),
   );
   return Object.keys(params).length ? params : null;
 }
