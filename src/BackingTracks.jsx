@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { backingTracks } from "./lib";
+import backingTracks from './backingTracks.json';
 
 const entries = Object.entries(backingTracks);
 
