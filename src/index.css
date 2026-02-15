@@ -9,22 +9,21 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --sidebar-width: 15rem;
+  --root-color: fuchsia;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
 #root {
-  margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-#root {
-  padding: 0 1rem;
 }
 
 @media screen and (max-width: 1280px) {
@@ -34,112 +33,102 @@ body,
   }
 }
 
-header {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-main {
+.app {
   flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem 0;
-}
 
-main > * {
-  margin: 0;
-}
+  .sidebar {
+    padding: 1rem;
+    width: var(--sidebar-width);
+    background-color: #111111;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-form {
-  display: flex;
-  gap: 1rem;
-}
+    .favorites {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      li {
+        button {
+          width: 100%;
+          font-size: 0.8rem;
+          line-height: 1.2rem;
+        }
+      }
+    }
 
-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+    .controls {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    footer {
+      padding: 1rem 0;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+  }
+
+  main {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1.5rem;
-}
-
-.card {
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 2rem 0;
-  color: black;
-  display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.card .note {
-  font-size: 2rem;
-  color: rgb(59, 59, 59);
-}
-
-.card .root {
-  font-size: 4rem;
-  font-weight: bold;
-  color: fuchsia;
-}
-
-footer {
-  padding: 1rem;
-}
-
-.favorites {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.backing-tracks {
-  display: grid;
-  grid-template-areas:
-    "a b"
-    "c b";
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 2rem;
-}
-
-.backing-tracks h2 {
-  grid-area: a;
-  margin: 0;
-  align-self: center;
-}
-
-.backing-tracks label {
-  grid-area: c;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-
-  select {
-    height: 2rem;
-    flex: 1;
+  .card {
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 2rem 1rem;
+    color: black;
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .note {
+      font-size: 2rem;
+      color: rgb(59, 59, 59);
+    }
+    .root {
+      font-size: 4rem;
+      font-weight: bold;
+      color: var(--root-color);
+    }
   }
 }
 
-.backing-tracks .player {
-  grid-area: b;
+.backing-tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    select {
+      height: 2rem;
+    }
+  }
 }
