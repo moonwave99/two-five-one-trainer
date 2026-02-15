@@ -15,21 +15,7 @@ import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 
 function App() {
-  const [cards, setCards] = useState([]);
-  const { settings, setSettings } = useContext(SettingsContext);
-
-  useEffect(() => {
-    const { cycle: amount } = INTERVALS.find(
-      ({ name }) => name === settings.interval,
-    );
-    setCards(
-      getByInterval({ amount, ...settings }).map((root) => ({
-        notes: getTwoFiveOne(getEnharmonic(root, settings.mode)),
-        id: nanoid(),
-      })),
-    );
-    setSearchParams(settings);
-  }, [settings]);
+  const { cards, settings, setSettings } = useCards();
 
   return (
     <div className="app">
@@ -77,6 +63,26 @@ function App() {
       </main>
     </div>
   );
+}
+
+function useCards() {
+  const [cards, setCards] = useState([]);
+  const { settings, setSettings } = useContext(SettingsContext);
+
+  useEffect(() => {
+    const { cycle: amount } = INTERVALS.find(
+      ({ name }) => name === settings.interval,
+    );
+    setCards(
+      getByInterval({ amount, ...settings }).map((root) => ({
+        notes: getTwoFiveOne(getEnharmonic(root, settings.mode)),
+        id: nanoid(),
+      })),
+    );
+    setSearchParams(settings);
+  }, [settings]);
+
+  return { cards, settings, setSettings };
 }
 
 export default App;

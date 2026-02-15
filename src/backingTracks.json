@@ -2,53 +2,53 @@
   "Jazz Four": [
     {
       "href": "https://www.youtube.com/watch?v=v3RvZnw79tw",
-      "label": "Jazz Four 60"
+      "bpm": 60
     },
     {
       "href": "https://www.youtube.com/watch?v=D_6P_xSg61I",
-      "label": "Jazz Four 70"
+      "bpm": 70
     },
     {
       "href": "https://www.youtube.com/watch?v=-nYXo4TPWwk",
-      "label": "Jazz Four 80"
+      "bpm": 80
     },
     {
       "href": "https://www.youtube.com/watch?v=tmEE8ujWbn8",
-      "label": "Jazz Four 90"
+      "bpm": 90
     },
     {
       "href": "https://www.youtube.com/watch?v=rwyAP9A7WBE",
-      "label": "Jazz Four 100"
+      "bpm": 100
     },
     {
       "href": "https://www.youtube.com/watch?v=2scW0-uD9W8",
-      "label": "Jazz Four 110"
+      "bpm": 110
     },
     {
       "href": "https://www.youtube.com/watch?v=E0Kxw0H_yCE",
-      "label": "Jazz Four 120"
+      "bpm": 120
     }
   ],
   "Bossa Brushes": [
     {
       "href": "https://www.youtube.com/watch?v=-WfpE4KMuXI",
-      "label": "Bossa Brushes 50"
+      "bpm": 50
     },
     {
       "href": "https://www.youtube.com/watch?v=3mpNamxw85M",
-      "label": "Bossa Brushes 60"
+      "bpm": 60
     },
     {
       "href": "https://www.youtube.com/watch?v=gSBSt6ibLf4",
-      "label": "Bossa Brushes 70"
+      "bpm": 70
     },
     {
       "href": "https://www.youtube.com/watch?v=yTejyOE-6-w",
-      "label": "Bossa Brushes 80"
+      "bpm": 80
     },
     {
       "href": "https://www.youtube.com/watch?v=GQYmiIDy78o",
-      "label": "Bossa Brushes 90"
+      "bpm": 90
     }
   ]
 }
