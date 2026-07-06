@@ -45,16 +45,21 @@ body,
     flex-direction: column;
     gap: 1rem;
 
-    .favorites {
-      list-style: none;
+    .presets {
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      li {
-        button {
-          width: 100%;
-          font-size: 0.8rem;
-          line-height: 1.2rem;
+      ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        li {
+          button {
+            width: 100%;
+            font-size: 0.8rem;
+            line-height: 1.2rem;
+          }
         }
       }
     }
@@ -67,7 +72,19 @@ body,
       form {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 2rem;
+        fieldset {
+          border: none;
+          display: flex;
+          gap: 0.5rem;
+          legend {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+          }
+          &.vertical {
+            flex-direction: column;
+          }
+        }
         label {
           display: flex;
           align-items: center;

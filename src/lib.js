@@ -1,7 +1,9 @@
 import { Note, Interval } from "tonal";
 
-export function getTwoFiveOne(root = "C") {
-  return [Note.transpose(root, "M2"), Note.transpose(root, "P5"), root];
+export function getDegrees(root = "C") {
+  return ["M2", "P5", "P1", "M6"].map((interval) =>
+    Note.transpose(root, interval),
+  );
 }
 
 function needsEnharmonic(note) {
@@ -41,16 +43,16 @@ export function getEnharmonic(note, mode) {
 }
 
 export function getChordQualities(
-  [two, five, one] = ["D", "G", "C"],
+  [two, five, one, six] = ["D", "G", "C", "A"],
   mode = "major",
 ) {
   if (mode === "major") {
-    return [`${two}m`, `${five}7`, `${one}`];
+    return [`${two}m`, `${five}7`, `${one}`, `${six}7`];
   }
   if (mode === "minor") {
     return [`${two}ø`, `${five}7`, `${one}m`];
   }
-  return [two, five, one];
+  return [two, five, one, six];
 }
 
 export const sharps = getByInterval({ amount: 6 });
@@ -65,9 +67,9 @@ export const INTERVALS = [
   { name: "m3", cycle: 4 },
 ];
 
-export const MODES = ["major", "minor", "none"];
+export const MODES = ["major", "minor", "neutral"];
 
-export const shortcuts = [
+export const presets = [
   {
     label: "Fifths Ascending",
     settings: {
@@ -155,7 +157,7 @@ export function getSearchParams() {
     Array.from(new URLSearchParams(window.location.search)).map(
       ([key, value]) => {
         if (key === "include") {
-          return ["include", value.split(",").map((n) => Number(n))];
+          return ["include", value.split(",").map(Number)];
         }
         if (key === "reverse") {
           return ["reverse", JSON.parse(value)];

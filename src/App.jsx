@@ -2,10 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { nanoid } from "nanoid";
 import {
   getByInterval,
-  getTwoFiveOne,
+  getDegrees,
   getEnharmonic,
   INTERVALS,
-  shortcuts,
+  presets,
   setSearchParams,
 } from "./lib";
 
@@ -15,30 +15,15 @@ import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 
 function App() {
-  const { cards, settings, setSettings } = useCards();
+  const { cards, settings } = useCards();
 
   return (
     <div className="app">
       <section className="sidebar">
         <h1>Dr. Drill</h1>
         <div className="controls">
-          <ul className="favorites">
-            {shortcuts.map(({ label, settings }, index) => (
-              <li key={index}>
-                <button
-                  onClick={() =>
-                    setSettings((prev) => ({
-                      ...prev,
-                      ...settings,
-                    }))
-                  }
-                >
-                  {label}
-                </button>
-              </li>
-            ))}
-          </ul>
           <Form />
+          <Presets />
           <footer>
             &copy; {new Date().getFullYear()}{" "}
             <a
@@ -52,7 +37,6 @@ function App() {
           </footer>
         </div>
       </section>
-
       <main>
         <div className="cards">
           {cards.slice(0, settings.max).map((card) => (
@@ -62,6 +46,32 @@ function App() {
         <BackingTracks />
       </main>
     </div>
+  );
+}
+
+function Presets() {
+  const { setSettings } = useContext(SettingsContext);
+
+  return (
+    <section className="presets">
+      <h2>Presets</h2>
+      <ul>
+        {presets.map(({ label, settings }, index) => (
+          <li key={index}>
+            <button
+              onClick={() =>
+                setSettings((prev) => ({
+                  ...prev,
+                  ...settings,
+                }))
+              }
+            >
+              {label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 
@@ -75,7 +85,7 @@ function useCards() {
     );
     setCards(
       getByInterval({ amount, ...settings }).map((root) => ({
-        notes: getTwoFiveOne(getEnharmonic(root, settings.mode)),
+        notes: getDegrees(getEnharmonic(root, settings.mode)),
         id: nanoid(),
       })),
     );
