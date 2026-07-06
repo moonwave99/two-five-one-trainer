@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="app">
       <section className="sidebar">
-        <h1>Dr. Drill</h1>
+        <h1>2-5-1 Trainer</h1>
         <div className="controls">
           <Form />
           <Presets />

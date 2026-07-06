@@ -111,7 +111,7 @@ export default function Form() {
           </select>
         </label>
         <label>
-          interval:
+          jump by
           <select
             name="interval"
             value={settings.interval}
@@ -123,7 +123,7 @@ export default function Form() {
           </select>
         </label>
         <label>
-          max
+          count
           <input
             name="max"
             onChange={onSettingsChange}

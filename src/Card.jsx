@@ -1,3 +1,4 @@
+import cx from "clsx";
 import { getChordQualities } from "./lib";
 
 export default function Card({ notes = [], settings }) {
@@ -5,8 +6,10 @@ export default function Card({ notes = [], settings }) {
     ? notes
     : getChordQualities(notes, settings.mode);
 
+  const hasSixth = settings.include.includes(6);
+
   return (
-    <article className="card">
+    <article className={cx("card", { hasSixth })}>
       {settings.include.includes(2) ? (
         <span className="note">{two}</span>
       ) : null}
