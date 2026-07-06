@@ -36,6 +36,20 @@ body,
 .app {
   flex: 1;
   display: flex;
+
+  header {
+    display: flex;
+    gap: 1rem;
+
+    .toggle-settings {
+      width: 2rem;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
   .sidebar {
     padding: 1rem;
     width: var(--sidebar-width);
@@ -105,9 +119,10 @@ body,
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     height: 100vh;
     overflow-y: auto;
+    position: relative;
   }
 }
 
@@ -144,20 +159,40 @@ body,
       color: var(--root-color);
     }
   }
+
+  @media screen and (max-width: 640px) {
+    grid-template-columns: 1fr;
+    .card {
+      flex-direction: row;
+      gap: 2rem;
+      .root {
+        font-size: 2rem;
+      }
+    }
+  }
 }
 
 .backing-tracks {
   display: flex;
   gap: 1rem;
+  padding-top: 1rem;
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+  }
+
   header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 15rem;
+    @media screen and (max-width: 640px) {
+      width: auto;
+    }
   }
   .player {
     flex: 1;
   }
+
   fieldset {
     border: none;
     display: flex;

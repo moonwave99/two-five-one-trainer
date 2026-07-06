@@ -61,7 +61,8 @@ export default function BackingTracks() {
       <ReactPlayer
         url={video}
         className="player"
-        height={230}
+        height={185}
+        width="100%"
         controls={true}
       />
     </section>

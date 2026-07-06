@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { nanoid } from "nanoid";
+import cx from "clsx";
 import {
   getByInterval,
   getDegrees,
@@ -15,29 +16,42 @@ import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 
 function App() {
+  const [showSettings, setShowSettings] = useState(true);
   const { cards, settings } = useCards();
 
   return (
-    <div className="app">
-      <section className="sidebar">
-        <h1>2-5-1 Trainer</h1>
-        <div className="controls">
-          <Form />
-          <Presets />
-          <footer>
-            &copy; {new Date().getFullYear()}{" "}
-            <a
-              href="https://github.com/moonwave99"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              mwlabs
-            </a>
-            .
-          </footer>
-        </div>
-      </section>
+    <div className={cx("app", { showSettings })}>
+      {showSettings && (
+        <section className="sidebar">
+          <h2>Settings</h2>
+          <div className="controls">
+            <Form />
+            <Presets />
+            <footer>
+              &copy; {new Date().getFullYear()}{" "}
+              <a
+                href="https://github.com/moonwave99"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                mwlabs
+              </a>
+              .
+            </footer>
+          </div>
+        </section>
+      )}
       <main>
+        <header>
+          <button
+            onClick={() => setShowSettings((prev) => !prev)}
+            className="toggle-settings"
+            aria-label="Toggle Settings"
+          >
+            ≡
+          </button>
+          <h1>2-5-1 Trainer</h1>
+        </header>
         <div className="cards">
           {cards.slice(0, settings.max).map((card) => (
             <Card key={card.id} {...card} settings={settings} />
