@@ -22,7 +22,10 @@ function App() {
 
   useKeyboard({
     s: () => setShowSettings((prev) => !prev),
-    z: () => setZenMode((prev) => !prev),
+    z: () => {
+      setShowSettings(false);
+      setZenMode((prev) => !prev);
+    },
   });
 
   return (
