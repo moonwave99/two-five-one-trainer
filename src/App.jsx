@@ -17,10 +17,16 @@ import Card from "./Card";
 
 function App() {
   const [showSettings, setShowSettings] = useState(true);
+  const [isZenMode, setZenMode] = useState(false);
   const { cards, settings } = useCards();
 
+  useKeyboard({
+    s: () => setShowSettings((prev) => !prev),
+    z: () => setZenMode((prev) => !prev),
+  });
+
   return (
-    <div className={cx("app", { showSettings })}>
+    <div className={cx("app", { showSettings, isZenMode })}>
       {showSettings && (
         <section className="sidebar">
           <h2>Settings</h2>
@@ -107,6 +113,22 @@ function useCards() {
   }, [settings]);
 
   return { cards, settings, setSettings };
+}
+
+function useKeyboard(handlers) {
+  useEffect(() => {
+    function onKeyDown(event) {
+      const handler = handlers[event.key];
+      if (!handler) {
+        return;
+      }
+      handler(event);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [handlers]);
 }
 
 export default App;

@@ -50,6 +50,16 @@ body,
     }
   }
 
+  &.isZenMode {
+    main > header,
+    .backing-tracks {
+      display: none;
+    }
+    main {
+      justify-content: center;
+    }
+  }
+
   .sidebar {
     padding: 1rem;
     width: var(--sidebar-width);
