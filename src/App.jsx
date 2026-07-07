@@ -18,7 +18,16 @@ import Card from "./Card";
 function App() {
   const [showSettings, setShowSettings] = useState(true);
   const [isZenMode, setZenMode] = useState(false);
-  const { cards, settings } = useCards();
+  const { cards, settings, setSettings } = useCards();
+
+  function toggleDegree(degree) {
+    setSettings((prev) => ({
+      ...prev,
+      include: prev.include.includes(degree)
+        ? prev.include.filter((x) => x !== degree)
+        : [...prev.include, degree],
+    }));
+  }
 
   useKeyboard({
     s: () => setShowSettings((prev) => !prev),
@@ -26,6 +35,9 @@ function App() {
       setShowSettings(false);
       setZenMode((prev) => !prev);
     },
+    2: () => toggleDegree(2),
+    5: () => toggleDegree(5),
+    6: () => toggleDegree(6),
   });
 
   return (
