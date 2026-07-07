@@ -45,12 +45,6 @@ function App() {
 
   return (
     <div className={cx("app", { showSettings, isZenMode })}>
-      <button
-        onClick={() => setZenMode((prev) => !prev)}
-        className="exit-zen-mode"
-      >
-        Toggle Zen Mode
-      </button>
       {showSettings && (
         <section className="sidebar">
           <h2>Settings</h2>
@@ -78,9 +72,15 @@ function App() {
             className="toggle-settings"
             aria-label="Toggle Settings"
           >
-            ≡
+            Settings
           </button>
           <h1>2-5-1 Trainer</h1>
+          <button
+            onClick={() => setZenMode((prev) => !prev)}
+            className="exit-zen-mode"
+          >
+            Toggle Zen Mode
+          </button>
         </header>
         <div className="cards">
           {cards.slice(0, settings.max).map((card) => (
