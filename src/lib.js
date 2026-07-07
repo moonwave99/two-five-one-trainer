@@ -32,7 +32,13 @@ export function getByInterval({
   return output;
 }
 
-export function getEnharmonic(note, mode) {
+export function getEnharmonic(note, { mode, enharmonics }) {
+  if (enharmonics && (note === "Gb" || note === "F#")) {
+    return "F#";
+  }
+  if (enharmonics && (note === "Db" || note === "C#")) {
+    return "C#";
+  }
   if (mode === "major" && note.includes("#")) {
     return Note.enharmonic(note);
   }
@@ -159,8 +165,8 @@ export function getSearchParams() {
         if (key === "include") {
           return ["include", value.split(",").map(Number)];
         }
-        if (key === "reverse") {
-          return ["reverse", JSON.parse(value)];
+        if (key === "reverse" || key === "enharmonics") {
+          return [key, JSON.parse(value)];
         }
         if (key === "max") {
           return ["max", Number(value)];

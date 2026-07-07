@@ -132,6 +132,15 @@ export default function Form() {
           />
         </label>
         <label>
+          switch enharmonics
+          <input
+            name="enharmonics"
+            onChange={onSettingsChange}
+            type="checkbox"
+            checked={settings.enharmonics}
+          />
+        </label>
+        <label>
           reverse
           <input
             name="reverse"

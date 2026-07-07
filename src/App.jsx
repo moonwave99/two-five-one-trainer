@@ -35,6 +35,9 @@ function App() {
       setShowSettings(false);
       setZenMode((prev) => !prev);
     },
+    e: () =>
+      setSettings((prev) => ({ ...prev, enharmonics: !prev.enharmonics })),
+    r: () => setSettings((prev) => ({ ...prev, reverse: !prev.reverse })),
     2: () => toggleDegree(2),
     5: () => toggleDegree(5),
     6: () => toggleDegree(6),
@@ -124,9 +127,10 @@ function useCards() {
     const { cycle: amount } = INTERVALS.find(
       ({ name }) => name === settings.interval,
     );
+
     setCards(
       getByInterval({ amount, ...settings }).map((root) => ({
-        notes: getDegrees(getEnharmonic(root, settings.mode)),
+        notes: getDegrees(getEnharmonic(root, settings)),
         id: nanoid(),
       })),
     );
