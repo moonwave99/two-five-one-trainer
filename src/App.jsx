@@ -30,6 +30,12 @@ function App() {
 
   return (
     <div className={cx("app", { showSettings, isZenMode })}>
+      <button
+        onClick={() => setZenMode((prev) => !prev)}
+        className="exit-zen-mode"
+      >
+        Toggle Zen Mode
+      </button>
       {showSettings && (
         <section className="sidebar">
           <h2>Settings</h2>
