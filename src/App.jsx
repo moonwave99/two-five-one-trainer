@@ -14,10 +14,12 @@ import { SettingsContext } from "./SettingsProvider";
 import Form from "./Form";
 import BackingTracks from "./BackingTracks";
 import Card from "./Card";
+import Modal from "./Modal";
 
 function App() {
   const [showSettings, setShowSettings] = useState(true);
   const [isZenMode, setZenMode] = useState(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
   const { cards, settings, setSettings } = useCards();
 
   function toggleDegree(degree) {
@@ -67,17 +69,26 @@ function App() {
       )}
       <main>
         <header>
-          <button
-            onClick={() => setShowSettings((prev) => !prev)}
-            className="toggle-settings"
-            aria-label="Toggle Settings"
-          >
-            Settings
-          </button>
+          <div className="actions">
+            <button
+              onClick={() => setShowSettings((prev) => !prev)}
+              className="toggle-settings"
+              aria-label="Toggle Settings"
+            >
+              Settings
+            </button>
+            <button
+              onClick={() => setShowShortcuts(true)}
+              className="show-shortcuts"
+              aria-label="Show Shortcuts"
+            >
+              Show Shortcuts
+            </button>
+          </div>
           <h1>2-5-1 Trainer</h1>
           <button
             onClick={() => setZenMode((prev) => !prev)}
-            className="exit-zen-mode"
+            className="toggle-zen-mode"
           >
             Toggle Zen Mode
           </button>
@@ -88,8 +99,50 @@ function App() {
           ))}
         </div>
         <BackingTracks />
+        <Shortcuts
+          showShortcuts={showShortcuts}
+          setShowShortcuts={setShowShortcuts}
+        />
       </main>
     </div>
+  );
+}
+
+function Shortcuts({ showShortcuts, setShowShortcuts }) {
+  return (
+    <Modal isOpen={showShortcuts} onClose={() => setShowShortcuts(false)}>
+      <h2>Shortcuts</h2>
+      <dl>
+        <dt>
+          <kbd>s</kbd>
+        </dt>
+        <dd>Toggle Settings Panel</dd>
+        <dt>
+          <kbd>z</kbd>
+        </dt>
+        <dd>Toggle Zen Mode</dd>
+        <dt>
+          <kbd>e</kbd>
+        </dt>
+        <dd>Switch Enharmonics (for F# and C#)</dd>
+        <dt>
+          <kbd>r</kbd>
+        </dt>
+        <dd>Reverse sequence</dd>
+        <dt>
+          <kbd>2</kbd>
+        </dt>
+        <dd>Toggle degree 2</dd>
+        <dt>
+          <kbd>5</kbd>
+        </dt>
+        <dd>Toggle degree 5</dd>
+        <dt>
+          <kbd>6</kbd>
+        </dt>
+        <dd>Toggle degree 6</dd>
+      </dl>
+    </Modal>
   );
 }
 
