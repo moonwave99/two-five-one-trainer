@@ -16,6 +16,8 @@ import BackingTracks from "./BackingTracks";
 import Card from "./Card";
 import Modal from "./Modal";
 
+import { homepage, author } from "../package.json";
+
 function App() {
   const [showSettings, setShowSettings] = useState(true);
   const [isZenMode, setZenMode] = useState(false);
@@ -55,12 +57,12 @@ function App() {
             <Presets />
             <footer>
               &copy; {new Date().getFullYear()}{" "}
-              <a
-                href="https://github.com/moonwave99"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={author.url} target="_blank" rel="noopener noreferrer">
                 mwlabs
+              </a>{" "}
+              -{" "}
+              <a href={homepage} target="_blank" rel="noopener noreferrer">
+                Github
               </a>
               .
             </footer>

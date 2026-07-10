@@ -1,7 +1,13 @@
 {
-  "name": "react",
+  "name": "two-five-one-trainer",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "homepage": "https://github.com/moonwave99/two-five-one-trainer",
+  "author": {
+    "name": "Diego Caponera",
+    "email": "hello@diegocaponera.com",
+    "url": "https://www.diegocaponera.com"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

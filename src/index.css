@@ -10,7 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --sidebar-width: 15rem;
-  --root-color: fuchsia;
+  --accent-color: fuchsia;
   --note-font-size: 2rem;
   --root-note-font-size: calc(var(--note-font-size) * 2);
 }
@@ -32,6 +32,13 @@ body,
   #root {
     margin: 0 auto;
     width: 100%;
+  }
+}
+
+a {
+  color: var(--accent-color);
+  &:hover {
+    color: white;
   }
 }
 
@@ -183,7 +190,7 @@ body,
     .root {
       font-size: var(--root-note-font-size);
       font-weight: bold;
-      color: var(--root-color);
+      color: var(--accent-color);
     }
   }
 
