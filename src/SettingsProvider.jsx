@@ -9,6 +9,7 @@ export default function SettingsProvider({ children }) {
   const params = getSearchParams();
   const [settings, setSettings] = useState({
     max: MAX_BLOCKS,
+    playing: undefined,
     ...(params || presets[0].settings),
   });
   return (

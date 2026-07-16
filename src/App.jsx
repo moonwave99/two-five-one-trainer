@@ -33,6 +33,10 @@ function App() {
     }));
   }
 
+  function toggleBackingTrackPlayback() {
+    setSettings((prev) => ({ ...prev, playing: !prev.playing }));
+  }
+
   useKeyboard({
     s: () => setShowSettings((prev) => !prev),
     z: () => {
@@ -42,6 +46,7 @@ function App() {
     e: () =>
       setSettings((prev) => ({ ...prev, enharmonics: !prev.enharmonics })),
     r: () => setSettings((prev) => ({ ...prev, reverse: !prev.reverse })),
+    p: toggleBackingTrackPlayback,
     2: () => toggleDegree(2),
     5: () => toggleDegree(5),
     6: () => toggleDegree(6),
@@ -79,6 +84,14 @@ function App() {
             >
               Settings
             </button>
+            {isZenMode && (
+              <button
+                onClick={toggleBackingTrackPlayback}
+                className="toggle-zen-mode"
+              >
+                Play / Pause Backing Track
+              </button>
+            )}
             <button
               onClick={() => setShowShortcuts(true)}
               className="show-shortcuts"
@@ -100,7 +113,7 @@ function App() {
             <Card key={card.id} {...card} settings={settings} />
           ))}
         </div>
-        <BackingTracks />
+        <BackingTracks playing={settings.playing} />
         <Shortcuts
           showShortcuts={showShortcuts}
           setShowShortcuts={setShowShortcuts}
@@ -125,6 +138,10 @@ function Shortcuts({ showShortcuts, setShowShortcuts }) {
         <dd>Toggle Zen Mode</dd>
         <dt>
           <kbd>e</kbd>
+        </dt>
+        <dd>Play / Pause Backing Track</dd>
+        <dt>
+          <kbd>p</kbd>
         </dt>
         <dd>Switch Enharmonics (for F# and C#)</dd>
         <dt>

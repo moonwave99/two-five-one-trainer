@@ -4,7 +4,7 @@ import backingTracks from "./backingTracks.json";
 
 const entries = Object.entries(backingTracks);
 
-export default function BackingTracks() {
+export default function BackingTracks({ playing }) {
   const [selection, setSelection] = useState({
     typeIndex: 0,
     bpmIndex: 0,
@@ -64,6 +64,7 @@ export default function BackingTracks() {
         height={185}
         width="100%"
         controls={true}
+        playing={playing}
       />
     </section>
   );
