@@ -180,5 +180,6 @@ export function getSearchParams() {
 
 export function setSearchParams(data) {
   const params = new URLSearchParams(data);
+  params.delete("playing");
   window.history.replaceState(null, null, `?${params}`);
 }
