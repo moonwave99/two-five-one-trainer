@@ -14,10 +14,7 @@ export default function useKeyboard(handlers) {
   useEffect(() => {
     function onKeyDown(event) {
       const handler = handlers[event.key];
-      if (!handler) {
-        return;
-      }
-      if (event.key === " " && paused.current) {
+      if (event.metaKey || !handler || (event.key === " " && paused.current)) {
         return;
       }
       handler(event);
