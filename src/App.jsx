@@ -30,7 +30,7 @@ function App() {
     setSettings((prev) => ({ ...prev, [param]: !prev[param] }));
   }
 
-  useKeyboard({
+  const { pause, resume } = useKeyboard({
     s: () => setShowSettings((prev) => !prev),
     z: () => {
       setShowSettings(false);
@@ -39,7 +39,7 @@ function App() {
     k: () => setShowShortcuts((prev) => !prev),
     e: () => toggleSetting("enharmonics"),
     r: () => toggleSetting("reverse"),
-    p: () => toggleSetting("playing"),
+    " ": () => toggleSetting("playing"),
     2: () => toggleDegree(2),
     5: () => toggleDegree(5),
     6: () => toggleDegree(6),
@@ -81,14 +81,20 @@ function App() {
               <button
                 onClick={() => toggleSetting("playing")}
                 className="toggle-zen-mode"
+                onFocus={pause}
+                onBlur={resume}
               >
-                Play / Pause Backing Track
+                {settings.playing
+                  ? "Stop Backing Track 🔊"
+                  : "Play Backing Track"}
               </button>
             )}
             <button
               onClick={() => setShowShortcuts(true)}
               className="show-shortcuts"
               aria-label="Show Shortcuts"
+              onFocus={pause}
+              onBlur={resume}
             >
               Show Shortcuts
             </button>
@@ -97,6 +103,8 @@ function App() {
           <button
             onClick={() => setZenMode((prev) => !prev)}
             className="toggle-zen-mode"
+            onFocus={pause}
+            onBlur={resume}
           >
             Toggle Zen Mode
           </button>

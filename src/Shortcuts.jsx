@@ -14,7 +14,7 @@ export default function Shortcuts({ showShortcuts, setShowShortcuts }) {
         </dt>
         <dd>Toggle Zen Mode</dd>
         <dt>
-          <kbd>p</kbd>
+          <kbd>Space</kbd>
         </dt>
         <dd>Play / Pause Backing Track</dd>
         <dt>
@@ -24,19 +24,19 @@ export default function Shortcuts({ showShortcuts, setShowShortcuts }) {
         <dt>
           <kbd>r</kbd>
         </dt>
-        <dd>Reverse sequence</dd>
+        <dd>Reverse Current Sequence</dd>
         <dt>
           <kbd>2</kbd>
         </dt>
-        <dd>Toggle degree 2</dd>
+        <dd>Toggle Degree 2</dd>
         <dt>
           <kbd>5</kbd>
         </dt>
-        <dd>Toggle degree 5</dd>
+        <dd>Toggle Degree 5</dd>
         <dt>
           <kbd>6</kbd>
         </dt>
-        <dd>Toggle degree 6</dd>
+        <dd>Toggle Degree 6</dd>
       </dl>
     </Modal>
   );

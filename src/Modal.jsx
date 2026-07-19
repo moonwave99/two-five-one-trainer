@@ -6,9 +6,9 @@ export default function Modal({ isOpen, onClose, children }) {
   useEffect(() => {
     if (isOpen) {
       ref.current?.showModal();
-    } else {
-      ref.current?.close();
+      return;
     }
+    ref.current?.close();
   }, [isOpen]);
 
   return (
