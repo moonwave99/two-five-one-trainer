@@ -50,5 +50,19 @@
       "href": "https://www.youtube.com/watch?v=GQYmiIDy78o",
       "bpm": 90
     }
+  ],
+  "Ballad": [
+    {
+      "href": "https://www.youtube.com/watch?v=-okxvl-fvNE&",
+      "bpm": 60
+    },
+    {
+      "href": "https://www.youtube.com/watch?v=4qNUUK3tCoY",
+      "bpm": 65
+    },
+    {
+      "href": "https://www.youtube.com/watch?v=OJDdRuDBSr4",
+      "bpm": 70
+    }
   ]
 }
