@@ -95,6 +95,8 @@ export const INTERVALS = [
 
 export const MODES = ["major", "minor", "neutral"];
 
+export const NOTATIONS = ["anglo-saxon", "solfege"];
+
 export const presets = [
   {
     label: "Fifths Ascending",

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { SettingsContext } from "./SettingsProvider";
-import { circeOfFifths, INTERVALS, MODES } from "./lib";
+import { circeOfFifths, INTERVALS, MODES, NOTATIONS } from "./lib";
 
 function getSteps(steps, step, checked) {
   return checked
@@ -149,6 +149,21 @@ export default function Form() {
             checked={settings.reverse}
           />
         </label>
+      </fieldset>
+      <fieldset>
+        <legend>Notation</legend>
+        {NOTATIONS.map((notation) => (
+          <label key={notation}>
+            {notation}
+            <input
+              name="notation"
+              value={notation}
+              onChange={onSettingsChange}
+              type="radio"
+              checked={settings.notation === notation}
+            />
+          </label>
+        ))}
       </fieldset>
     </form>
   );
