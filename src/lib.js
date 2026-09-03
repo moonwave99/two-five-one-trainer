@@ -106,7 +106,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -117,7 +117,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -128,7 +128,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "M2",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -139,7 +139,7 @@ export const presets = [
       mode: "major",
       start: "B",
       interval: "M2",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -150,7 +150,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "M2",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -161,7 +161,7 @@ export const presets = [
       mode: "major",
       start: "B",
       interval: "M2",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -172,7 +172,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
   {
@@ -183,7 +183,7 @@ export const presets = [
       mode: "minor",
       start: "A",
       interval: "P5",
-      notation: "algo-saxon",
+      notation: "anglo-saxon",
     },
   },
 ];
