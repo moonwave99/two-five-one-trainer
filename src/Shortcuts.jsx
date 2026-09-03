@@ -18,6 +18,10 @@ export default function Shortcuts({ showShortcuts, setShowShortcuts }) {
         </dt>
         <dd>Play / Pause Backing Track</dd>
         <dt>
+          <kbd>n</kbd>
+        </dt>
+        <dd>Toggle Anglo-saxon / Solfege notation</dd>
+        <dt>
           <kbd>e</kbd>
         </dt>
         <dd>Switch Enharmonics (for F# and C#)</dd>

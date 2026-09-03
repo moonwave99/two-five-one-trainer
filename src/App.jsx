@@ -30,6 +30,13 @@ function App() {
     setSettings((prev) => ({ ...prev, [param]: !prev[param] }));
   }
 
+  function toggleNotation() {
+    setSettings((prev) => ({
+      ...prev,
+      notation: prev.notation === "anglo-saxon" ? "solfege" : "anglo-saxon",
+    }));
+  }
+
   const { pause, resume } = useKeyboard({
     s: () => setShowSettings((prev) => !prev),
     z: () => {
@@ -38,6 +45,7 @@ function App() {
     },
     k: () => setShowShortcuts((prev) => !prev),
     e: () => toggleSetting("enharmonics"),
+    n: () => toggleNotation(),
     r: () => toggleSetting("reverse"),
     " ": () => toggleSetting("playing"),
     2: () => toggleDegree(2),

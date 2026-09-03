@@ -48,10 +48,30 @@ export function getEnharmonic(note, { mode, enharmonics }) {
   return note;
 }
 
+const noteMap = {
+  C: "Do",
+  D: "Re",
+  E: "Mi",
+  F: "Fa",
+  G: "Sol",
+  A: "La",
+  B: "Si",
+};
+
+function getNoteName(note, notation) {
+  if (notation === "anglo-saxon") {
+    return note;
+  }
+  const { letter, acc } = Note.get(note);
+  return `${noteMap[letter]}${acc}`;
+}
+
 export function getChordQualities(
-  [two, five, one, six] = ["D", "G", "C", "A"],
+  notes = ["D", "G", "C", "A"],
   mode = "major",
+  notation = "anglo-saxon",
 ) {
+  const [two, five, one, six] = notes.map((x) => getNoteName(x, notation));
   if (mode === "major") {
     return [`${two}m`, `${five}7`, `${one}`, `${six}7`];
   }
@@ -84,6 +104,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
+      notation: "algo-saxon",
     },
   },
   {
@@ -94,6 +115,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
+      notation: "algo-saxon",
     },
   },
   {
@@ -104,6 +126,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "M2",
+      notation: "algo-saxon",
     },
   },
   {
@@ -114,6 +137,7 @@ export const presets = [
       mode: "major",
       start: "B",
       interval: "M2",
+      notation: "algo-saxon",
     },
   },
   {
@@ -124,6 +148,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "M2",
+      notation: "algo-saxon",
     },
   },
   {
@@ -134,6 +159,7 @@ export const presets = [
       mode: "major",
       start: "B",
       interval: "M2",
+      notation: "algo-saxon",
     },
   },
   {
@@ -144,6 +170,7 @@ export const presets = [
       mode: "major",
       start: "C",
       interval: "P5",
+      notation: "algo-saxon",
     },
   },
   {
@@ -154,6 +181,7 @@ export const presets = [
       mode: "minor",
       start: "A",
       interval: "P5",
+      notation: "algo-saxon",
     },
   },
 ];

@@ -2,9 +2,11 @@ import cx from "clsx";
 import { getChordQualities } from "./lib";
 
 export default function Card({ notes = [], settings }) {
-  const [two, five, one, six] = settings.rootsOnly
-    ? notes
-    : getChordQualities(notes, settings.mode);
+  const [two, five, one, six] = getChordQualities(
+    notes,
+    settings.mode,
+    settings.notation,
+  );
 
   const hasSixth = settings.include.includes(6);
 
