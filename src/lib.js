@@ -66,6 +66,25 @@ function getNoteName(note, notation) {
   return `${noteMap[letter]}${acc}`;
 }
 
+const qualityMap = {
+  "anglo-saxon": {
+    major: "",
+    minor: "m",
+    dominant: "7",
+    halfDiminished: "ø",
+  },
+  solfege: {
+    major: "",
+    minor: "-",
+    dominant: "7",
+    halfDiminished: "ø",
+  },
+};
+
+function getChordQuality(type, notation) {
+  return qualityMap[notation][type] || "";
+}
+
 export function getChordQualities(
   notes = ["D", "G", "C", "A"],
   mode = "major",
@@ -73,10 +92,19 @@ export function getChordQualities(
 ) {
   const [two, five, one, six] = notes.map((x) => getNoteName(x, notation));
   if (mode === "major") {
-    return [`${two}m`, `${five}7`, `${one}`, `${six}7`];
+    return [
+      `${two}${getChordQuality("minor", notation)}`,
+      `${five}${getChordQuality("dominant", notation)}`,
+      `${one}${getChordQuality("major", notation)}`,
+      `${six}${getChordQuality("dominant", notation)}`,
+    ];
   }
   if (mode === "minor") {
-    return [`${two}ø`, `${five}7`, `${one}m`];
+    return [
+      `${two}${getChordQuality("halfDiminished", notation)}`,
+      `${five}${getChordQuality("dominant", notation)}`,
+      `${one}${getChordQuality("minor", notation)}`,
+    ];
   }
   return [two, five, one, six];
 }
