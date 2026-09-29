@@ -64,5 +64,19 @@
       "href": "https://www.youtube.com/watch?v=OJDdRuDBSr4",
       "bpm": 70
     }
+  ],
+  "Rock": [
+    {
+      "href": "https://www.youtube.com/watch?v=5eG-nTbbmcI",
+      "bpm": 60
+    },
+    {
+      "href": "https://www.youtube.com/watch?v=kq23L5W2tI8",
+      "bpm": 70
+    },
+    {
+      "href": "https://www.youtube.com/watch?v=tmn29hfb4nI",
+      "bpm": 80
+    }
   ]
 }
