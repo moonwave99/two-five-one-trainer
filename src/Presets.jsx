@@ -8,22 +8,20 @@ export default function Presets() {
   return (
     <section className="presets">
       <h2>Presets</h2>
-      <ul>
-        {presets.map(({ label, settings }, index) => (
-          <li key={index}>
-            <button
-              onClick={() =>
-                setSettings((prev) => ({
-                  ...prev,
-                  ...settings,
-                }))
-              }
-            >
-              {label}
-            </button>
-          </li>
+      <select
+        onChange={(event) =>
+          setSettings((prev) => ({
+            ...prev,
+            ...presets[event.target.value].settings,
+          }))
+        }
+      >
+        {presets.map(({ label }, index) => (
+          <option key={index} value={index}>
+            {label}
+          </option>
         ))}
-      </ul>
+      </select>
     </section>
   );
 }

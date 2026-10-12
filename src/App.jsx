@@ -57,10 +57,10 @@ function App() {
     <div className={cx("app", { showSettings, isZenMode })}>
       {showSettings && (
         <section className="sidebar">
+          <Presets />
           <h2>Settings</h2>
           <div className="controls">
             <Form />
-            <Presets />
             <footer>
               &copy; {new Date().getFullYear()}{" "}
               <a href={author.url} target="_blank" rel="noopener noreferrer">
