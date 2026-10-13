@@ -41,6 +41,7 @@ function App() {
     s: () => setShowSettings((prev) => !prev),
     z: () => {
       setShowSettings(false);
+      setShowShortcuts(false);
       setZenMode((prev) => !prev);
     },
     k: () => setShowShortcuts((prev) => !prev),

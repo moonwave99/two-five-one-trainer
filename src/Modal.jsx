@@ -11,10 +11,19 @@ export default function Modal({ isOpen, onClose, children }) {
     ref.current?.close();
   }, [isOpen]);
 
+  function onClick(event) {
+    if (!event.target.classList.contains("modal")) {
+      return;
+    }
+    onClose();
+  }
+
   return (
-    <dialog ref={ref} onCancel={onClose} className="modal">
-      {children}
-      <button onClick={onClose}>Close</button>
+    <dialog ref={ref} onCancel={onClose} className="modal" onClick={onClick}>
+      <div className="modal-content">
+        {children}
+        <button onClick={onClose}>Close</button>
+      </div>
     </dialog>
   );
 }
